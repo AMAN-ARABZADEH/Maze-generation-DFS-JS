@@ -1,5 +1,7 @@
 "use strict";
-
+// Sources: https://p5js.org/reference/#/p5/line
+// https://en.wikipedia.org/wiki/Maze_generation_algorithm
+// Inspired by: https://www.youtube.com/@TheCodingTrain
 // Global Variables
 let rows = 20;
 let columns = 20;
@@ -118,7 +120,10 @@ function Cell(row, column) {
 
     if (this.visited) {
       noStroke();
-      fill(180, 250, 205, 150); // Soft green for visited cells
+      // Dynamic gradient coloring based on row and column position
+      let colValue = map(this.column, 0, columns, 100, 255);
+      let rowValue = map(this.row, 0, rows, 100, 255);
+      fill(colValue, 250, rowValue, 150);
       rect(x, y, size, size);
     }
   };
